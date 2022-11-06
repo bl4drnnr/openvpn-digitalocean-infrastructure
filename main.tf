@@ -7,26 +7,6 @@ terraform {
   }
 }
 
-variable "do_token" {
-  type    = string
-  default = ""
-}
-
-variable "region" {
-  type    = string
-  default = "fra1"
-}
-
-variable "droplet_count" {
-  type    = number
-  default = 1
-}
-
-variable "droplet_size" {
-  type    = string
-  default = "s-1vcpu-1gb"
-}
-
 provider "digitalocean" {
   token = var.do_token
 }
@@ -47,8 +27,3 @@ resource "digitalocean_droplet" "web" {
     create_before_destroy = true
   }
 }
-
-output "server_id" {
-  value       = digitalocean_droplet.web.*.ipv4_address
-}
-
