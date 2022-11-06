@@ -20,8 +20,8 @@ variable "droplet_names" {
   description = "List of droplets names"
   type        = list(string)
   default     = [
-    "Certificate-Authority",
-    "OpenVPN-Server",
-    "NextCloud-Server"
+    "certificate-authority-server",
+    "openvpn-server",
+    "nextcloud-Server"
   ]
 }
