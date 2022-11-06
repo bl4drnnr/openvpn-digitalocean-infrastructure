@@ -1,5 +1,5 @@
 <h1 align="center">
-    OpenVPN DigitalOcean-based Terraform infrastructure
+    OpenVPN DigitalOcean Terraform infrastructure
 </h1>
 
 ## Table of contents
@@ -31,7 +31,7 @@ The presented project presents **OpenVPN** infrastructure build on **DigitalOcea
 - step-by-step instruction on how to implement it using **Terraform** (this repository) and on your own
 - detailed information about **TLS/SSL, HTTPS, certificates, key pairs** etc.
 
-Happy reading!
+_**Happy reading!**_
 
 ---
 
@@ -63,9 +63,6 @@ Just follow next easy steps:
     The same situation if you want to destroy built infrastructure:
     ```
     terraform destroy
-
-    OR
-
     terraform destroy -var-file="<NAME_OF_VARS_FILE>"
     ```
 
