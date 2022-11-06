@@ -10,6 +10,11 @@
 5. [References and Contact](#references-and-contact)
 6. [License](#license)
 
+![DigitalOcean](https://img.shields.io/badge/DigitalOcean-%230167ff.svg?style=for-the-badge&logo=digitalOcean&logoColor=white)
+![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+
 ---
 
 ### Introduction
@@ -50,7 +55,19 @@ Just follow next easy steps:
 2. In root folder of the project create file with name `terraform.tfvars`. The name can be whatever you want it to be, but it has to end with `.tfvars`.
 3. In this file put next string - `do_token = "<YOUR_DIGITALOCEAN_API_TOKEN>"`. If you don't know where to find it, see [here](https://docs.digitalocean.com/reference/api/create-personal-access-token/). **Make sure generated token has write permissions!**
 4. Open up your terminal and navigate to folder with project.
-5. Type `terraform plan` and then `terraform apply`. In case if you have changed the name of file with variables you need to specify it by using `-var-file` flag, so, your commands will be looking like this - `terraform plan -var-file="<NAME_OF_VARS_FILE>"` and `terraform apply -var-file="<NAME_OF_VARS_FILE>"`. The same situation with if you want to destroy built infrastructure - `terraform destroy` or `terraform destroy -var-file="<NAME_OF_VARS_FILE>"`.
+5. Type `terraform plan` and then `terraform apply`. In case if you have changed the name of file with variables you need to specify it by using `-var-file` flag, so, your commands will be looking like this:
+    ```
+    terraform plan -var-file="<NAME_OF_VARS_FILE>"
+    terraform apply -var-file="<NAME_OF_VARS_FILE>"
+    ```
+    The same situation if you want to destroy built infrastructure:
+    ```
+    terraform destroy
+
+    OR
+
+    terraform destroy -var-file="<NAME_OF_VARS_FILE>"
+    ```
 
 ---
 
