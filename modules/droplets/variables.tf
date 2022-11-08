@@ -22,6 +22,6 @@ variable "droplet_names" {
   default     = [
     "certificate-authority-server",
     "openvpn-server",
-    "nextcloud-Server"
+    "nextcloud-server"
   ]
 }
