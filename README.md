@@ -40,18 +40,26 @@ _**Happy reading!**_
 
 Let's start with a little bit of theory.
 
-First of all, let's figure out how **OpenVPN** works. Everything works on certificates. Certificate - is an digital document that contains information about client (or holder) of this certificate. When client wants to connect to server, it shows this certificate to server in order to confirm identity. Certificate itself contains public key of the client (private key is held in secret by the client) and sign of **CA**.
+First of all, we shoud define terminology we are going to use.
+1. **Client** - end-user, you or your laptop, mobile phone etc.
+2. **OpenVPN Server** (or just **server**) - server, where we configured our OpenVPN service. Also, this is server we, as clients, are going to connect.
+3. **Certificate Authorities** (or just **CA**) - is an entity that stores, signs, and issues digital certificates. In our particular case, it is only going to sign requests by server.
+4. **Certificate** - in cryptography, a public key certificate, also known as a digital certificate or identity certificate, is an electronic document used to prove the validity of a public key.
 
-So, at this moment server has to check if the client, who is trying to connect to it, is legit, because everyone can generate this certificate and sign it. Here is where **certificate authorities** (or just **CA**) come into play. **CA** - is an entity that stores, signs, and issues digital certificates.
+One very important thing to mention:
+- Only our **OpenVPN Server** will be the only one entity, that will generate private keys and certificates for **clients**.
 
-When client generates certificate, it generates key and request. Request is sent to CA asking for sign of this certificate. After CA's sign, it sends it back to client. And now, when client wants to connect to server, it should show this certificate to server. But wait... how and what does server know about 
-it? Actually, certificate of CA is stored on server which contains public key, and it's very easy to check this sign with public key.
+When client wants to connect to server, it has to show certificate, sign by CA. But how does this signing work? As it has been mentioned above, only our server is entity, that can generate those certificates for clients
 
-Here is how it looks like step-by-step:
+1. Server generates request (**certificate request**) and private key.
+2. Certificate request is sent to CA server, where it is signed and sent back.
+3. Then, _**using certificate of CA, user certificate and key**_, server will generate configuration file for client. It it a file, client is going to use in order to connect to VPN server. Every client must have its own config and each must align with the settings outlined in the server’s configuration file
 
-1. Request to sign and private key are generated.
-2. Request is sent to **CA** to sign.
-3. When request is signed, it is sent back to client (in form of certificate).
+So, let's break this down step-by-step, how clients connect to VPN servers:
+
+1. Client wants to connect to server. In order to do that, it shows to server its certificate.
+2. Certificate contains public key and sign by **CA**.
+3. Server checks, if certificate is signed by proper **CA**. How can it do that? The certificate of **CA** is stored on server.
 
 ---
 
