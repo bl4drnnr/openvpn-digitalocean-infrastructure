@@ -4,11 +4,12 @@
 
 ## Table of contents
 1. [Introduction](#introduction)
-2. [Network Diagram and Description](#network-diagram-and-description)
-3. [Step-by-Step Guideline](#step-by-step-guideline)
-4. [Repository Source Code Usage](#repository-source-code-usage)
-5. [References and Contact](#references-and-contact)
-6. [License](#license)
+2. [Theory](#theory)
+3. [Network Diagram and Description](#network-diagram-and-description)
+4. [Step-by-Step Guideline](#step-by-step-guideline)
+5. [Repository Source Code Usage](#repository-source-code-usage)
+6. [References and Contact](#references-and-contact)
+7. [License](#license)
 
 ![DigitalOcean](https://img.shields.io/badge/DigitalOcean-%230167ff.svg?style=for-the-badge&logo=digitalOcean&logoColor=white)
 ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
@@ -32,6 +33,25 @@ The presented project presents **OpenVPN** infrastructure build on **DigitalOcea
 - detailed information about **TLS/SSL, HTTPS, certificates, key pairs** etc.
 
 _**Happy reading!**_
+
+---
+
+### Theory
+
+Let's start with a little bit of theory.
+
+First of all, let's figure out how **OpenVPN** works. Everything works on certificates. Certificate - is an digital document that contains information about client (or holder) of this certificate. When client wants to connect to server, it shows this certificate to server in order to confirm identity. Certificate itself contains public key of the client (private key is held in secret by the client) and sign of **CA**.
+
+So, at this moment server has to check if the client, who is trying to connect to it, is legit, because everyone can generate this certificate and sign it. Here is where **certificate authorities** (or just **CA**) come into play. **CA** - is an entity that stores, signs, and issues digital certificates.
+
+When client generates certificate, it generates key and request. Request is sent to CA asking for sign of this certificate. After CA's sign, it sends it back to client. And now, when client wants to connect to server, it should show this certificate to server. But wait... how and what does server know about 
+it? Actually, certificate of CA is stored on server which contains public key, and it's very easy to check this sign with public key.
+
+Here is how it looks like step-by-step:
+
+1. Request to sign and private key are generated.
+2. Request is sent to **CA** to sign.
+3. When request is signed, it is sent back to client (in form of certificate).
 
 ---
 
