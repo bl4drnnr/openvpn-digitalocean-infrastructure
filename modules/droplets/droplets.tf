@@ -1,4 +1,4 @@
-data "digitalocean_ssh_key" "openvpn_instance_1_ssh" {
+data "digitalocean_ssh_key" "do_ssh_key" {
   name = "openvpn-instance-1-ssh"
 }
 
@@ -14,7 +14,7 @@ resource "digitalocean_droplet" "droplet_instance" {
   name   = var.droplet_names[count.index]
   size   = var.droplet_size
   region = var.region
-  ssh_keys = [data.digitalocean_ssh_key.openvpn_instance_1_ssh.id]
+  ssh_keys = [data.digitalocean_ssh_key.do_ssh_key.id]
 
   lifecycle {
     create_before_destroy = true
