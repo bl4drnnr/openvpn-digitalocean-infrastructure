@@ -4,6 +4,7 @@
 
 ## Table of contents
 1. [Introduction](#introduction)
+2. [Prerequirements](#prerequirements)
 2. [Theory](#theory)
 3. [Network Diagram and Description](#network-diagram-and-description)
 4. [Step-by-Step Guideline](#step-by-step-guideline)
@@ -33,6 +34,28 @@ The presented project presents **OpenVPN** infrastructure build on **DigitalOcea
 - detailed information about **TLS/SSL, HTTPS, certificates, key pairs** etc.
 
 _**Happy reading!**_
+
+---
+
+### Prerequirements
+
+In order to execute and build current infrastructure, make sure you have `Terraform` and `Ansible` installed on your machine.
+
+Versions can be checked by typing in terminal:
+
+1. `terraform --version`
+
+    ```
+    Terraform v1.3.4
+    ```
+
+2. `ansible --version`
+
+    ```
+    ansible [core 2.13.6]
+    ```
+
+Also, you'll have to obtain your `DigitalOcean` API token. More about how to generate and how to use this token you can find [here](#references-and-contact).
 
 ---
 
@@ -74,7 +97,7 @@ When clients connect to OpenVPN, they use asymmetric encryption (also known as p
 ### Repository Source Code Usage
 
 In case if you want to clone this repository and create your own OpenVPN DigitalOcean infrastructure, here is how you can do this.
-Just follow next easy steps:
+Just follow next steps:
 
 1. Clone this repository locally on your machine
     ```
