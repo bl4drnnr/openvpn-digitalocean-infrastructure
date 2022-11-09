@@ -36,3 +36,4 @@ terraform.rc
 .DS_Store
 
 ansible/inventory.txt
+ansible/openvpn_do_ssh.key
