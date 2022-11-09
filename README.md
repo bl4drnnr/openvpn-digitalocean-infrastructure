@@ -1,5 +1,5 @@
 <h1 align="center">
-    OpenVPN DigitalOcean Terraform infrastructure
+    OpenVPN DigitalOcean infrastructure
 </h1>
 
 ## Table of contents
@@ -50,15 +50,16 @@ First of all, we shoud define terminology we are going to use.
 One very important thing that should be mentioned:
 - Only our **OpenVPN Server** will be the only one entity, that will generate private keys and certificates for **clients**.
 
-When client wants to connect to server, it has to show certificate, signed by CA. But how does this signing work? As it has been mentioned above, only our VPN server is entity, that can generate those certificates for clients. Here is how it works:
+When client wants to connect to server, it has to show certificate, signed by CA. But how does this signing work? As it has been mentioned above, only our VPN server is entity, that can generate those certificates for clients. Here is how certificated are generated and signed by **CA's**:
 
-1. Server generates request - **Certificate Signing Request** or just **CSR** - and a pair of public and private key. The CSR would contain a copy of the public key and some basic information about the subject.
-2. Certificate request is sent to CA server, once the CA is done signing the cert using its private key, the CA would then return the cert. On these certificates is a copy of the public key of the CA who might issue (sign) your server certificate.
+1. Server generates request - **Certificate Signing Request** or just **CSR** - and a pair of public and private key. The **CSR** would contain a copy of the public key and some basic information about the subject.
+2. Certificate request is sent to CA server, once the CA is done signing the cert using its private key, the CA would then return the cert. On these certificates there is a copy of the public key of the CA who might issue (sign) your server certificate.
+3. In this particular case, our server will also generate **.ovpn** files, that clients will use in order to connect to server. 
 
 When clients connect to OpenVPN, they use asymmetric encryption (also known as public/private key) to perform a TLS handshake. However, when transmitting encrypted VPN traffic, the server and clients use symmetric encryption, which is also known as shared key encryption. So, let's break this down step-by-step, how clients connect to VPN servers:
 
-1. Client wants to connect to server. In order to do that, it shows to server its certificate. Certificate contains public key and sign by **CA**.
-2. Server verifies, if certificate is signed by proper **CA** by using its certificate. The certificate of **CA** is stored on server.
+1. Client wants to connect to server. In order to do that, it shows to server certificate. Remember, that certificate contains public key and signed by **CA**.
+2. From now on, server can compare certificates of client and CA and verifies, if certificate actually has been signed by proper **CA** by using its certificate. The certificate of **CA** is stored on server.
 
 ---
 
