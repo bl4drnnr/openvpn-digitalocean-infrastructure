@@ -100,6 +100,7 @@ In case if you want to clone this repository and create your own OpenVPN Digital
 Just follow next steps:
 
 1. Clone this repository locally on your machine
+
     ```
     git clone https://github.com/bl4drnnr/openvpn-digitalocean-infrastructure.git
     ```
@@ -107,11 +108,13 @@ Just follow next steps:
 3. In this file put next string - `do_token = "<YOUR_DIGITALOCEAN_API_TOKEN>"`. If you don't know where to find it, see [here](https://docs.digitalocean.com/reference/api/create-personal-access-token/). **Make sure generated token has write permissions!**
 4. Open up your terminal and navigate to folder with project.
 5. Type `terraform plan` and then `terraform apply`. In case if you have changed the name of file with variables you need to specify it by using `-var-file` flag, so, your commands will be looking like this:
+
     ```
     terraform plan -var-file="<NAME_OF_VARS_FILE>"
     terraform apply -var-file="<NAME_OF_VARS_FILE>"
     ```
     The same situation if you want to destroy built infrastructure:
+
     ```
     terraform destroy
     terraform destroy -var-file="<NAME_OF_VARS_FILE>"
