@@ -8,3 +8,4 @@ output "ssh_keys" {
   value       = module.openvpn_do_infrastructure_module.ssh_keys
   sensitive   = true
 }
+
