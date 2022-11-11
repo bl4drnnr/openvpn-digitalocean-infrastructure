@@ -37,3 +37,5 @@ terraform.rc
 
 ansible/inventory.txt
 ansible/openvpn_do_ssh.pem
+ansible/group_vars/*
+

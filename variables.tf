@@ -14,3 +14,9 @@ variable "droplet_names" {
   ]
 }
 
+variable "group_name" {
+  description = "Name of the droplets group"
+  type        = string
+  default     = "main_droplets"
+}
+
