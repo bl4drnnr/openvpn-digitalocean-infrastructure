@@ -13,7 +13,7 @@ resource "local_file" "servers_ipv4" {
     "[${var.group_name}]",
     join("\n", [
       for idx, s in module.openvpn_do_infrastructure_module.servers_ipv4:
-      "${var.droplet_names[idx]} ansible_host=${s} ansible_user=${var.users[idx]}"
+      "${var.droplet_names[idx]} ansible_host=${s} ansible_user=root"
     ])
   ]
   )
@@ -40,6 +40,22 @@ resource "local_file" "ansible_playbooks_create_users" {
     ])
   ])
   filename        = "${path.module}/ansible/create_users.yml"
+  file_permission = "0700"
+}
+
+resource "local_file" "ping_servers" {
+  content         = <<EOT
+---
+- name: Test connection to all servers
+  hosts: all
+  become: yes
+
+  tasks:
+  
+  - name: Ping server
+    ping:
+  EOT
+  filename        = "${path.module}/ansible/ping_server.yml"
   file_permission = "0700"
 }
 
