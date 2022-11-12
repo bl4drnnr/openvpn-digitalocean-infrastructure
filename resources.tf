@@ -24,22 +24,6 @@ resource "local_file" "ssh_keys" {
   file_permission = "0400" 
 }
 
-resource "local_file" "ping_servers" {
-  content         = <<EOT
----
-- name: Test connection to all servers
-  hosts: all
-  become: yes
-
-  tasks:
-  
-  - name: Ping server
-    ping:
-  EOT
-  filename        = "${path.module}/ansible/ping_server.yml"
-  file_permission = "0700"
-}
-
 resource "local_file" "ansible_playbooks_create_users" {
   count           = length(var.users)
   content         = <<EOT
@@ -49,6 +33,9 @@ resource "local_file" "ansible_playbooks_create_users" {
   become: yes
 
   tasks:
+  - name: Ping host
+    ping:
+
   - name: Create non-root user ${var.users[count.index]} for ${var.droplet_names[count.index]}
     ansible.builtin.user:
       name: ${var.users[count.index]}
@@ -57,7 +44,7 @@ resource "local_file" "ansible_playbooks_create_users" {
   - name: Copy SSH keys in order to allow non-user connect via SSH
     shell: rsync --archive --chown=${var.users[count.index]}:${var.users[count.index]} ~/.ssh /home/${var.users[count.index]}
     EOT
-  filename        = "${path.module}/ansible/create_users_${var.droplet_names[count.index]}.yml"
+  filename        = "${path.module}/ansible/playbooks/users/create_users_${var.droplet_names[count.index]}.yml"
   file_permission = "0700"
 }
 
