@@ -39,7 +39,7 @@ resource "local_file" "ansible_playbooks_create_users" {
         EOT
     ])
   ])
-  filename        = "${path.module}/ansible/playbooks/create_users.yml"
+  filename        = "${path.module}/ansible/create_users.yml"
   file_permission = "0700"
 }
 

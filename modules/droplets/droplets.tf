@@ -8,11 +8,11 @@ resource "digitalocean_ssh_key" "openvpn_do_ssh" {
   public_key = tls_private_key.ssh.public_key_openssh
 }
 
-resource "digitalocean_project" "open_vpn" {
-  name        = "OpenVPN"
-  description = "OpenVPN DigitalOcean-based infrastructure"
-  purpose     = "Custom OpenVPN server"
-}
+#resource "digitalocean_project" "open_vpn" {
+#  name        = "OpenVPN"
+#  description = "OpenVPN DigitalOcean-based infrastructure"
+#  purpose     = "Custom OpenVPN server"
+#}
 
 resource "digitalocean_droplet" "droplet_instance" {
   image  = "ubuntu-20-04-x64"
@@ -27,7 +27,7 @@ resource "digitalocean_droplet" "droplet_instance" {
   }
 }
 
-resource "digitalocean_project_resources" "open_vpn_resources" {
-  project   = digitalocean_project.open_vpn.id
-  resources = digitalocean_droplet.droplet_instance[*].urn
-}
+#resource "digitalocean_project_resources" "open_vpn_resources" {
+#  project   = digitalocean_project.open_vpn.id
+#  resources = digitalocean_droplet.droplet_instance[*].urn
+#}
