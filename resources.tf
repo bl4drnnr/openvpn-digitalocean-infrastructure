@@ -44,7 +44,7 @@ resource "local_file" "ansible_playbooks_create_users" {
   - name: Copy SSH keys in order to allow non-user connect via SSH
     shell: rsync --archive --chown=${var.users[count.index]}:${var.users[count.index]} ~/.ssh /home/${var.users[count.index]}
     EOT
-  filename        = "${path.module}/ansible/create_users_${var.droplet_names[count.index]}.yml"
+  filename        = "${path.module}/ansible/playbooks/create_users_${var.droplet_names[count.index]}.yml"
   file_permission = "0700"
 }
 
