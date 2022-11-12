@@ -20,3 +20,13 @@ variable "group_name" {
   default     = "main_droplets"
 }
 
+variable "users" {
+  description = "List of non-root users for each droplet"
+  type        = list(string)
+  default     = [
+    "ca",
+    "openvpn",
+    "nc"
+  ]
+}
+
