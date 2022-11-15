@@ -71,7 +71,7 @@ First of all, we shoud define terminology we are going to use.
 4. **Certificate** - in cryptography, a public key certificate, also known as a digital certificate or identity certificate, is an electronic document used to prove the validity of a public key. Certificate contains public key of the owner and signing by CA.
 
 One very important thing that should be mentioned:
-- Only our **OpenVPN Server** will be the only one entity, that will generate private keys and certificates for **clients**.
+- Only our **OpenVPN Server** will be the only one entity, that will generate private keys and certificates for **clients**. Even though our server generates **private key**, it never should keep it. The only one entity, that can have direct access to private user key is end-user.
 
 When client wants to connect to server, it has to show certificate, signed by CA. But how does this signing work? As it has been mentioned above, only our VPN server is entity, that can generate those certificates for clients. Here is how certificated are generated and signed by **CA's**:
 
