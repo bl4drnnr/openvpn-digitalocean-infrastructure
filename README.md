@@ -1,5 +1,5 @@
 <h1 align="center">
-    OpenVPN DigitalOcean infrastructure
+    OpenVPN DigitalOcean Infrastructure
 </h1>
 
 ## Table of contents
