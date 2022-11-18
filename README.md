@@ -77,9 +77,8 @@ When client wants to connect to server, it has to show certificate, signed by CA
 
 1. Server generates request - **Certificate Signing Request** or just **CSR** - and a pair of public and private key. The **CSR** would contain a copy of the public key and some basic information about the subject.
 2. Certificate request is sent to CA server, once the CA is done signing the cert using its private key, the CA would then return the cert. On these certificates there is a copy of the public key of the CA who might issue (sign) your server certificate.
-3. In this particular case, our server will also generate `.ovpn` files, that clients will use in order to connect to server. 
 
-More information about structure of files with `.ovpn` extention you can find [here](https://serverfault.com/questions/963237/create-own-ovpn-file-from-using-certificate-and-key),
+In this particular case, our server will also generate `.ovpn` files, that clients will use in order to connect to server. More information about structure of files with `.ovpn` extention you can find [here](https://serverfault.com/questions/963237/create-own-ovpn-file-from-using-certificate-and-key).
 
 When clients connect to OpenVPN, they use asymmetric encryption (also known as public/private key) to perform a `TLS` handshake. However, when transmitting encrypted VPN traffic, the server and clients use symmetric encryption, which is also known as shared key encryption. So, let's break this down step-by-step, how clients connect to VPN servers:
 
